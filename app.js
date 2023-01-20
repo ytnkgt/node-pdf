@@ -27,9 +27,11 @@ app.post("/pdf", async (req, res, next) => {
   console.log(url);
 
   const browser = await puppeteer.launch({args: ['--no-sandbox', '--disable-setuid-sandbox']});
-  const page = await browser.newPage();h
+  const page = await browser.newPage();
 
-  await page.goto(url);
+  await page.goto(url,  {
+    waitUntil: 'load',
+  });
 
   // await page.waitForNavigation({
   //   waitUntil: "networkidle0",
